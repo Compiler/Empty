@@ -21,7 +21,7 @@ public class Core extends ApplicationAdapter {
 	@Override
 	public void create () {
 
-		//ShaderProgram.pedantic = false;
+		ShaderProgram.pedantic = false;
 
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
@@ -33,10 +33,10 @@ public class Core extends ApplicationAdapter {
 		sprite.setSize(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight() / 2);
 		sprite.setPosition(100, 100);
 		String one = Gdx.files.internal("Shaders/pass.vert").readString();
-		shader = new ShaderProgram(Gdx.files.internal("Shaders/pass.vert").readString(), Gdx.files.internal("Shaders/pass.frag").readString());
+		shader = new ShaderProgram(Gdx.files.internal("Shaders/pass.vert"), Gdx.files.internal("Shaders/pass.frag"));
 		System.out.println(one);
 
-		System.out.println(shader.isCompiled() ? "Compiled successfully" : "Compiled with cancer");
+		System.out.println(shader.isCompiled() ? "Compiled successfully" : "Compiled with cancer:\n" + shader.getLog());
 	}
 
 	@Override
@@ -49,7 +49,6 @@ public class Core extends ApplicationAdapter {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		
 		batch.setShader(shader);
-		shader.setUniformMatrix("u_projTrans", camera.combined);
 		batch.begin();
 		batch.draw(sprite, sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());	
 		batch.end();
