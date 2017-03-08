@@ -6,38 +6,53 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-
+import com.badlogic.gdx.graphics.glutils.ShaderProgram;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 
 public class Core extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private Texture img;
 	private OrthographicCamera camera;
-	private ShapeRenderer renderer;
+
+
+	private ShaderProgram shader;
+	private Sprite sprite;
+
 	@Override
 	public void create () {
+
+		//ShaderProgram.pedantic = false;
+
 		camera = new OrthographicCamera();
 		camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
 
-		renderer = new ShapeRenderer();
-		renderer.setAutoShapeType(true);
+		batch = new SpriteBatch();
+	
+		img = new Texture(Gdx.files.internal("badlogic.jpg"));
+		sprite = new Sprite(img);
+		sprite.setSize(Gdx.graphics.getWidth()/2, Gdx.graphics.getHeight() / 2);
+		sprite.setPosition(100, 100);
+		String one = Gdx.files.internal("Shaders/pass.vert").readString();
+		shader = new ShaderProgram(Gdx.files.internal("Shaders/pass.vert").readString(), Gdx.files.internal("Shaders/pass.frag").readString());
+		System.out.println(one);
 
+		System.out.println(shader.isCompiled() ? "Compiled successfully" : "Compiled with cancer");
 	}
 
 	@Override
 	public void render () {
 		camera.update();
-		renderer.setProjectionMatrix(camera.combined);
+		batch.setProjectionMatrix(camera.combined);
 
 
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
-
-		renderer.begin();
-		renderer.rect(0.0f, 0.0f, 100.0f, 100.0f);
-		renderer.end();
-
+		
+		batch.setShader(shader);
+		shader.setUniformMatrix("u_projTrans", camera.combined);
+		batch.begin();
+		batch.draw(sprite, sprite.getX(), sprite.getY(), sprite.getWidth(), sprite.getHeight());	
+		batch.end();
 
 	}
 	
