@@ -50,10 +50,10 @@ public class Core extends ApplicationAdapter {
 		elapsed+=Gdx.graphics.getDeltaTime();
 		else elapsed -= Gdx.graphics.getDeltaTime();
 		render.begin();
-		render.setColor(2020202020202020200.0f, 0.0f, 200.0f, 255f);
+		render.setColor(200.0f, 0.0f, 200.0f, 255f);
 		for(int i = 0; i < Gdx.graphics.getWidth(); i+=incrementer){
 			for(int k = 0; k < Gdx.graphics.getHeight(); k+=incrementer){
-				render.rect(i, k, incrementer - 5, incrementer - 5);
+				render.rect(i, k, incrementer - elapsed, incrementer - elapsed);
 			}
 		}
 		render.end();
