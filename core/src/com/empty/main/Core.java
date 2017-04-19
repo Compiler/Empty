@@ -44,7 +44,14 @@ public class Core extends ApplicationAdapter {
 		//render
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+		int incrementer = 25;
 		
+		for(int i = 0; i < Gdx.graphics.getWidth(); i+=incrementer){
+			for(int k = 0; k < Gdx.graphics.getHeight(); k+=incrementer){
+				render.rect(i, k, incrementer, incrementer);
+			
+			}
+		}
 	}
 	
 	@Override
