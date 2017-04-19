@@ -48,6 +48,7 @@ public class Core extends ApplicationAdapter {
 		int incrementer = 25;
 	
 		render.begin();
+		render.setColor(0.0f, 0.0f, 100.0f);
 		for(int i = 0; i < Gdx.graphics.getWidth(); i+=incrementer){
 			for(int k = 0; k < Gdx.graphics.getHeight(); k+=incrementer){
 				render.rect(i, k, incrementer - 5, incrementer - 5);
