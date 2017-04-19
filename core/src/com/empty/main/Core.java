@@ -16,6 +16,7 @@ public class Core extends ApplicationAdapter {
 
 	private Sprite sprite;
 	private ShapeRenderer render;
+
 	@Override
 	public void create () {
 
@@ -49,7 +50,7 @@ public class Core extends ApplicationAdapter {
 		render.begin();
 		for(int i = 0; i < Gdx.graphics.getWidth(); i+=incrementer){
 			for(int k = 0; k < Gdx.graphics.getHeight(); k+=incrementer){
-				render.rect(i, k, incrementer, incrementer);
+				render.rect(i, k, incrementer - 1, incrementer - 1);
 			
 			}
 		}
