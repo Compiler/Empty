@@ -50,7 +50,7 @@ public class Core extends ApplicationAdapter {
 		render.begin();
 		for(int i = 0; i < Gdx.graphics.getWidth(); i+=incrementer){
 			for(int k = 0; k < Gdx.graphics.getHeight(); k+=incrementer){
-				render.rect(i, k, incrementer - 1, incrementer - 1);
+				render.rect(i, k, incrementer - 5, incrementer - 5);
 			
 			}
 		}
