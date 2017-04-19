@@ -45,8 +45,8 @@ public class Core extends ApplicationAdapter {
 		//render
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		int incrementer = 25;
-		if(elapsed < 5)
+		float incrementer = 25.0f;
+		if(elapsed < 15)
 		elapsed+=Gdx.graphics.getDeltaTime();
 		else elapsed -= Gdx.graphics.getDeltaTime();
 		render.begin();
