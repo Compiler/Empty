@@ -34,7 +34,7 @@ public class Core extends ApplicationAdapter {
 		render.setAutoShapeType(true);
 
 	}
-
+	float elapsed = 0;
 	@Override
 	public void render () {
 		//update
@@ -46,7 +46,9 @@ public class Core extends ApplicationAdapter {
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		int incrementer = 25;
-	
+		if(elapsed < 5)
+		elapsed+=Gdx.graphics.getDeltaTime();
+		else elapsed -= Gdx.graphics.getDeltaTime();
 		render.begin();
 		render.setColor(2020202020202020200.0f, 0.0f, 200.0f, 255f);
 		for(int i = 0; i < Gdx.graphics.getWidth(); i+=incrementer){
